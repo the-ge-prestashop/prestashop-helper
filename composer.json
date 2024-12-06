@@ -1,7 +1,6 @@
 {
   "type": "library",
   "name": "the-ge-prestashop/prestashop-helper",
-  "version": "1.0.0",
   "description": "PrestaShop helpers and hacks",
   "authors": [
     {
