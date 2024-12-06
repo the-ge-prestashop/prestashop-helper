@@ -3,7 +3,7 @@
 /**
  * Base trait containing helpers used by hook traits
  *
- * File name: ModuleAid.php
+ * File name: ModuleSharedMethods.php
  * Created:   2024-09-02 07:24
  * @author    Gabriel Tenita <the.ge.1447624801@tenita.eu>
  * @link      https://github.com/the-ge/
@@ -19,7 +19,7 @@ use PrestaShopModuleException;
 use PrestaShopLogger;
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
-trait ModuleAid
+trait ModuleSharedMethods
 {
     private function getControllerKey(?Controller $controller = null)
     {
