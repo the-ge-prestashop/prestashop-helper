@@ -78,6 +78,23 @@ trait ModuleSharedMethods
         return ($this->database ?? Db::getInstance())->executeS($sql);
     }
 
+    /**
+     * Smarty template helper
+     *
+     * $this->moduleMainFile stores the main file __FILE__ constant
+     * @see TheGePricesAltCurrency (thegepricesaltcurrency.php:52)
+     *
+     * @param      array<mixed>  $template_vars
+     *
+     * @return     string        The HTML code resulted by rendering the Smarty template
+     */
+    private function renderTemplate(string $template, array $template_vars): string // @phpstan-ignore method.unused
+    {
+        $this->context->smarty?->assign($template_vars);
+
+        return $this->display($this->moduleMainFile, $template);
+    }
+
     private function logException(PrestaShopModuleException $exception, string $context): string
     {
         PrestaShopLogger::addLog(
