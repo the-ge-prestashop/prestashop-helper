@@ -21,6 +21,27 @@ use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
 trait ModuleSharedMethods
 {
+
+    /**
+     * Get the hook traits list by filtering the module traits array by the
+     * existence of both the 'Hook' trait name prefix and a method with the trait name,
+     * then convert the list to a hook names list.
+     *
+     * @return string[] The PrestaShop hooks list
+     */
+    private function hooks(): array
+    {
+        return array_map(
+            fn($v) => lcfirst(substr($v, 4)),
+            array_filter(
+                array_map(
+                    fn($v) => substr(strrchr($v, '\\') ?: $v, 1),
+                    array_keys(class_uses($this, false))),
+                fn($v) => str_starts_with($v, 'Hook') && method_exists($this, $v)
+            )
+        );
+    }
+
     private function getControllerKey(?Controller $controller = null)
     {
         $controller ??= $this->context->controller;
